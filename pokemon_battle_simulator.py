@@ -21,7 +21,10 @@ types = {'Fire': {'strong_against': ['Wind'], 'weak_against': ['Water']},
          'Earth': {'strong_against': ['Water'], 'weak_against': ['Fire']},
          'Wind': {'strong_against': ['Earth'], 'weak_against': ['Fire']}}
 
+### in general - good job, good breakdown to smaller functions
+
 class Pokemon:
+ ### today we learned on a more readable way to do this
     def __init__(self, pokemon_data):
         if not pokemon_data or len(pokemon_data) != 6:
             raise ValueError('Pokemon data is required')
@@ -38,6 +41,7 @@ class Pokemon:
         if not pokemon_data[5] or not 120 >= pokemon_data[5] >= 1:
             raise ValueError('Life is required and must be a number between 1 and 120')
 
+        ### try to avoid magic numbers, this is difficult to refactor later
         self.name = pokemon_data[0]
         self.level = pokemon_data[1]
         self.strength = pokemon_data[2]
@@ -174,6 +178,7 @@ class Fight:
     
     
 # give player1 first 5 pokemons and player 2 the next 5 
+### good on creating pokemon inventory dynamicly! 10 points!
 player1 = Player('Player 1', [Pokemon(pokemon) for pokemon in pokemon_db[:5]])
 player2 = Player('Player 2', [Pokemon(pokemon) for pokemon in pokemon_db[5:]])
 fight = Fight(player1, player2)
